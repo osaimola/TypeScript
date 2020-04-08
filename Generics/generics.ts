@@ -87,8 +87,9 @@ interface Sample {
 }
 
 // In this case, types which have the name property (imolement Sample interface) will be allowed
-function IdentityCard<T extends Sample>(owner: T) {
+function IdentityCard<T extends Sample>(owner: T): string {
   console.log(`ID Card belongst to ${owner.name}`);
+  return `ID Card belongst to ${owner.name}`;
 }
 
 let bingo = {
@@ -103,3 +104,8 @@ let chair = {
 
 IdentityCard<Sample>(bingo); // bingo is allowes as it has a name property
 IdentityCard<Sample>(chair); // raises error as name property is not present
+
+// we can also create variables with our generic function types
+// here IDReader has type similar to IdentityCard function
+let IDReader: <T extends Sample>(value: T) => string;
+IDReader = IdentityCard;
