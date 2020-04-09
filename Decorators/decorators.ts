@@ -13,3 +13,47 @@ function classDecorator(constructor: Function) {
   // does something
   console.log(`${constructor} Decorator invoked`);
 }
+
+// method decorator example
+function methodDecorator(
+  target: Object,
+  propertyKey: string,
+  descriptor: PropertyDescriptor
+) {
+  // does something
+  console.log("Method Invoked");
+}
+
+// property decorator
+function propertyDecorator(target: Object, propertyKey: string) {
+  // does something
+  console.log(`${propertyKey} Decorator Invoked`);
+}
+
+//parameter decorator
+function parameterDecorator(
+  target: Object,
+  propertyKey: string,
+  index: number
+) {
+  // does something
+  console.log(`${propertyKey} decorator (${index}) invoked`);
+}
+
+// DECORATOR FACTORIES are functions that return decorators
+// they have added advantage of allowing us pass in values while declaring them. they must use paranthesis
+
+// calling a decorator factory
+// @decoratorFactory("myValyue")
+
+// defining the decorator factory
+function decoratorFactory(value: string) {
+  return function createdDecorator(
+    target: Object,
+    propertyKey: string,
+    descriptor: PropertyDescriptor
+  ) {
+    // does something with value passed in
+    console.log(`Method invoked. ${value} received from decorator factory`);
+  };
+}
